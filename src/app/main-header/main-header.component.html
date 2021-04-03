@@ -1,0 +1,27 @@
+<mat-toolbar class="toolbar-style">
+    <mat-toolbar-row fxLayout="row"  fxLayoutAlign="space-between center">
+        <!-- https://tburleson-layouts-demos.firebaseapp.com/#/docs -->
+        <div fxLayout="row">
+            <button mat-button>               
+                <span class="logo">Agrar Demo</span>
+            </button>
+            <div *ngIf="!deviceXS">
+                <button mat-button>Home</button>
+                <button mat-button>About</button>
+                <button mat-button>Contact</button>
+            </div>           
+        </div>
+        <div>
+            <button (click)="toggleMenu()" *ngIf="deviceXS"  mat-icon-button>
+                <mat-icon class="burger-menu" aria-label="Side nav toggle icon">menu</mat-icon>
+                <!-- <span >Menu</span> -->
+            </button>
+        </div>
+    </mat-toolbar-row>
+
+    <mat-toolbar-row *ngIf="menuVisible" fxLayoutAlign="space-between end">
+        <button mat-button>Home</button>
+        <button mat-button>About</button>
+        <button mat-button>Contact</button>
+    </mat-toolbar-row>
+</mat-toolbar>
