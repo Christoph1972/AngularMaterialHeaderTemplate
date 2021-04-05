@@ -6,10 +6,10 @@
                 <span class="logo">Navbar Header Demo</span>
             </button>
             <div *ngIf="!deviceXS">
-                <button #navButton mat-button>Home</button><!--not working-->
+                <button #navButton mat-button>Home</button>
                 <button #navButton mat-button>About</button>
-                <button #navButton >Contact</button> <!--working-->
-                <button #navButton >Imprint</button>
+                <button #navButton mat-button>Contact</button>
+                <button #navButton mat-button>Imprint</button>
             </div>
         </div>
         <div>
@@ -20,9 +20,9 @@
     </mat-toolbar-row>
 
     <mat-toolbar-row *ngIf="menuVisible" fxLayoutAlign="space-between end">
-        <button #navButton mat-button>Home</button><!--not working-->
+        <button #navButton mat-button>Home</button>
         <button #navButton mat-button>About</button>
-        <button #navButton >Contact</button><!--working-->
-        <button #navButton >Imprint</button>
+        <button #navButton mat-button>Contact</button>
+        <button #navButton mat-button>Imprint</button>
     </mat-toolbar-row>
 </mat-toolbar>

@@ -7,8 +7,8 @@ import { OnInit, AfterViewInit, Component, ElementRef, Input, QueryList, Rendere
 })
 export class MainHeaderComponent implements AfterViewInit, OnInit {
 
-  //Get all buttons ny "navButton" atribute.
-  @ViewChildren('navButton')
+  //Get all buttons by "navButton" atribute.
+  @ViewChildren('navButton', { read: ElementRef })
   listOfNavButtons!: QueryList<ElementRef>;
 
   constructor(private renderer: Renderer2) { }
@@ -16,8 +16,14 @@ export class MainHeaderComponent implements AfterViewInit, OnInit {
   ngOnInit(): void {
     this.renderer.listen('window', 'click', (e: Event) => {
 
-      let result = this.containsButton(e) ? "match" : "missmatch";
-      console.log(result);
+      let contains = this.containsButton(e);
+      console.log(contains);
+      if (contains) {
+
+      } else {
+        this.menuVisible = false;
+      }
+
     });
   }
 
@@ -28,18 +34,10 @@ export class MainHeaderComponent implements AfterViewInit, OnInit {
 
     let contains = false;
 
-    //The following console.log shows the difference between e.target & listOfNavButton items.
-    //********************** 
-    console.log(e.target);
-    console.log("----------------");
-    console.log(this.listOfNavButtons.first);
-    //**********************
-
     //Using a normal button works as expected. With mat-button the comparison fails.
     this.listOfNavButtons.forEach(x => {
 
-      if (e.target === x.nativeElement) {
-        console.log("Match");
+      if (e.target === x.nativeElement?.firstChild) {
         contains = true;
         return;
       }
@@ -57,10 +55,8 @@ export class MainHeaderComponent implements AfterViewInit, OnInit {
   public set deviceXS(v: boolean) {
     this._deviceXS = v;
 
-    this.menuVisible = v;
+    //this.menuVisible = v;
   }
-
-
 
   menuVisible: boolean = false;
 
