@@ -1,20 +1,52 @@
-import { Interpolation } from '@angular/compiler';
-import { Component, Input, OnInit } from '@angular/core';
+import { OnInit, AfterViewInit, Component, ElementRef, Input, QueryList, Renderer2, ViewChildren } from '@angular/core';
 
 @Component({
   selector: 'app-main-header',
   templateUrl: './main-header.component.html',
   styleUrls: ['./main-header.component.scss']
 })
-export class MainHeaderComponent implements OnInit {
+export class MainHeaderComponent implements AfterViewInit, OnInit {
 
-  constructor() { }
+  //Get all buttons ny "navButton" atribute.
+  @ViewChildren('navButton')
+  listOfNavButtons!: QueryList<ElementRef>;
+
+  constructor(private renderer: Renderer2) { }
 
   ngOnInit(): void {
-  }
-  // @Input()
-  // deviceXS: boolean = false;
+    this.renderer.listen('window', 'click', (e: Event) => {
 
+      let result = this.containsButton(e) ? "match" : "missmatch";
+      console.log(result);
+    });
+  }
+
+  ngAfterViewInit(): void {
+  }
+
+  containsButton(e: Event): boolean {
+
+    let contains = false;
+
+    //The following console.log shows the difference between e.target & listOfNavButton items.
+    //********************** 
+    console.log(e.target);
+    console.log("----------------");
+    console.log(this.listOfNavButtons.first);
+    //**********************
+
+    //Using a normal button works as expected. With mat-button the comparison fails.
+    this.listOfNavButtons.forEach(x => {
+
+      if (e.target === x.nativeElement) {
+        console.log("Match");
+        contains = true;
+        return;
+      }
+    });
+
+    return contains;
+  }
 
 
   private _deviceXS: boolean = false;
@@ -24,8 +56,8 @@ export class MainHeaderComponent implements OnInit {
   }
   public set deviceXS(v: boolean) {
     this._deviceXS = v;
-    if (!v)
-      this.menuVisible = false;
+
+    this.menuVisible = v;
   }
 
 

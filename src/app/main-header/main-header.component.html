@@ -1,27 +1,28 @@
 <mat-toolbar class="toolbar-style">
-    <mat-toolbar-row fxLayout="row"  fxLayoutAlign="space-between center">
+    <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
         <!-- https://tburleson-layouts-demos.firebaseapp.com/#/docs -->
         <div fxLayout="row">
-            <button mat-button>               
-                <span class="logo">Agrar Demo</span>
+            <button mat-button>
+                <span class="logo">Navbar Header Demo</span>
             </button>
             <div *ngIf="!deviceXS">
-                <button mat-button>Home</button>
-                <button mat-button>About</button>
-                <button mat-button>Contact</button>
-            </div>           
+                <button #navButton mat-button>Home</button><!--not working-->
+                <button #navButton mat-button>About</button>
+                <button #navButton >Contact</button> <!--working-->
+                <button #navButton >Imprint</button>
+            </div>
         </div>
         <div>
-            <button (click)="toggleMenu()" *ngIf="deviceXS"  mat-icon-button>
+            <button (click)="toggleMenu()" *ngIf="deviceXS" mat-icon-button>
                 <mat-icon class="burger-menu" aria-label="Side nav toggle icon">menu</mat-icon>
-                <!-- <span >Menu</span> -->
             </button>
         </div>
     </mat-toolbar-row>
 
     <mat-toolbar-row *ngIf="menuVisible" fxLayoutAlign="space-between end">
-        <button mat-button>Home</button>
-        <button mat-button>About</button>
-        <button mat-button>Contact</button>
+        <button #navButton mat-button>Home</button><!--not working-->
+        <button #navButton mat-button>About</button>
+        <button #navButton >Contact</button><!--working-->
+        <button #navButton >Imprint</button>
     </mat-toolbar-row>
 </mat-toolbar>
