@@ -8,12 +8,10 @@
             <div *ngIf="!deviceXS">
                 <button #navButton mat-button>Home</button>
                 <button #navButton mat-button>About</button>
-                <button #navButton mat-button>Contact</button>
-                <button #navButton mat-button>Imprint</button>
+                <button #navButton mat-button>Contact</button>               
             </div>
         </div>
-        <div>
-            <!-- *ngIf="deviceXS"-->
+        <div>           
             <button *ngIf="deviceXS" (click)="toggleMenu()" mat-icon-button>
                 <mat-icon #toggleButton  class="burger-menu" aria-label="Side nav toggle icon">menu</mat-icon>
             </button>
@@ -23,7 +21,6 @@
     <mat-toolbar-row *ngIf="menuVisible" fxLayoutAlign="space-between end">
         <button #navButton mat-button>Home</button>
         <button #navButton mat-button>About</button>
-        <button #navButton mat-button>Contact</button>
-        <button #navButton mat-button>Imprint</button>
+        <button #navButton mat-button>Contact</button>       
     </mat-toolbar-row>
 </mat-toolbar>
