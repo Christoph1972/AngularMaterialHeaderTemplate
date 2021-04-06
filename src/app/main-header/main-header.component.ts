@@ -22,7 +22,11 @@ export class MainHeaderComponent implements OnInit {
     return this._deviceXS;
   }
   public set deviceXS(v: boolean) {
-    this._deviceXS = v;   
+    this._deviceXS = v;
+
+    if (!v && this.menuVisible) {
+      this.menuVisible = false;
+    }
   }
 
   constructor(private renderer: Renderer2) { }
