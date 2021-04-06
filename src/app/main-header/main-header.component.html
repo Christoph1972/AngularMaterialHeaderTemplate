@@ -13,8 +13,9 @@
             </div>
         </div>
         <div>
-            <button (click)="toggleMenu()" *ngIf="deviceXS" mat-icon-button>
-                <mat-icon class="burger-menu" aria-label="Side nav toggle icon">menu</mat-icon>
+            <!-- *ngIf="deviceXS"-->
+            <button *ngIf="deviceXS" (click)="toggleMenu()" mat-icon-button>
+                <mat-icon #toggleButton  class="burger-menu" aria-label="Side nav toggle icon">menu</mat-icon>
             </button>
         </div>
     </mat-toolbar-row>
